@@ -1,0 +1,157 @@
+[
+  {
+    "num": 1,
+    "name": "Marché Maisonneuve et Fontaine La Fermière",
+    "lat": 45.5540,
+    "lng": -73.5390,
+    "time": "10h30",
+    "duration": 12,
+    "type": "start",
+    "desc": "Point de départ. Marché Beaux-Arts conçu par Marius Dufresne et inauguré en mai 1914. Fermé en 1962, Centre culturel et sportif de l'Est depuis 1980, nouveau marché public sur la place voisine depuis 1995. Sur la place, la fontaine La Fermière en bronze d'Alfred Laliberté installée en 1915, en réfection en 2025."
+  },
+  {
+    "num": 2,
+    "name": "Bain Morgan et Petits Baigneurs",
+    "lat": 45.5534,
+    "lng": -73.5384,
+    "time": "10h42",
+    "duration": 11,
+    "desc": "1875 avenue Morgan. Édifice Beaux-Arts de Marius Dufresne (1914-1916) inspiré du Asser Levy Public Baths de New York. Trois sculptures sommitales d'Arthur Dubord et fontaine Les Petits Baigneurs en bronze de Laliberté en façade. Restauration 2023 par Beaupré Michaud architectes. Piscine encore en activité."
+  },
+  {
+    "num": 3,
+    "name": "École Chomedey-De Maisonneuve",
+    "lat": 45.5521,
+    "lng": -73.5366,
+    "time": "10h53",
+    "duration": 4,
+    "desc": "1860 avenue Morgan. Bâtiment Art déco de 1929, école secondaire francophone du CSSDM. Bas-reliefs de mûrier, pain et croix catholique en façade. Travaux de réfection en cours."
+  },
+  {
+    "num": 4,
+    "name": "École Maisonneuve (anglophone)",
+    "lat": 45.5513,
+    "lng": -73.5363,
+    "time": "10h57",
+    "duration": 4,
+    "desc": "1680 avenue Morgan. Anciennement Maisonneuve School (1921), conçue par Ross and Macdonald en vocabulaire néo-Tudor. Inscriptions « Girls » et « Boys » des entrées séparées. Rénovation 2020-2024 par Yelle Maillé (YMa)."
+  },
+  {
+    "num": 5,
+    "name": "Église presbytérienne Maisonneuve",
+    "lat": 45.5514,
+    "lng": -73.5338,
+    "time": "11h01",
+    "duration": 5,
+    "desc": "1606 avenue Letourneux. Église austère de la communauté anglophone d'origine écossaise et irlandaise, fondée 1888-1890. Édifice actuel reconstruit en 1925 après un incendie. Brique rouge-brun, toiture en bardeau d'asphalte, presbytère contigu sans démarcation."
+  },
+  {
+    "num": 6,
+    "name": "Théâtre Denise-Pelletier",
+    "lat": 45.5514,
+    "lng": -73.5328,
+    "time": "11h06",
+    "duration": 6,
+    "desc": "4353 rue Sainte-Catherine Est. Inauguré en mars 1930 sous le nom de Théâtre Granada (Emmanuel Arthur Doucet, décoration Emmanuel Briffa). Cinéma atmosphérique de 1685 places à l'origine. Conversion en théâtre 1976-1977. Rénovation 2008-2010 par Saia Barbarese Topouzanov, Prix d'excellence OAQ 2011."
+  },
+  {
+    "num": 7,
+    "name": "Ensemble Morgan : boulevard et parc",
+    "lat": 45.5500,
+    "lng": -73.5317,
+    "time": "11h12",
+    "duration": 16,
+    "desc": "Axe civique conçu en 1912-1913 par les frères Dufresne et le maire Michaud, réaménagement 1937-1939 par Frederick G. Todd. Parc Morgan sur l'ancien domaine Milton Lodge de la famille Morgan, acquis par la Ville en 1929. Chalet et kiosque palladien anglais conçus par Donat Beaupré en 1931."
+  },
+  {
+    "num": 8,
+    "name": "Caserne Letourneux n° 1 et Centre Nutrilait",
+    "lat": 45.5502,
+    "lng": -73.5370,
+    "time": "11h28",
+    "duration": 5,
+    "desc": "411 avenue Letourneux. Ancienne caserne de Marius Dufresne (1915), inspirée du Unity Temple de Frank Lloyd Wright. Caserne jusqu'en 1962, poste de police jusqu'aux années 2000, théâtre Sans Fil (2003), centre d'entraînement du CF Montréal depuis 2014-2015."
+  },
+  {
+    "num": 9,
+    "name": "Traversée de l'autoroute Ville-Marie",
+    "lat": 45.5510,
+    "lng": -73.5385,
+    "time": "11h33",
+    "duration": 3,
+    "desc": "Mini-arrêt thématique. Coulée verte qui constitue le souvenir paysager d'un projet autoroutier avorté des années 1970. Expropriations massives, projet abandonné sous la pression citoyenne, bande transformée en parc linéaire."
+  },
+  {
+    "num": 10,
+    "name": "Église du Très-Saint-Nom-de-Jésus",
+    "lat": 45.5519,
+    "lng": -73.5399,
+    "time": "11h36",
+    "duration": 10,
+    "desc": "4215 rue Adam. Première grande église de la cité de Maisonneuve, 1903-1906, par Albert Mesnard et Charles-Aimé Reeves. Style romano-byzantin. Décor intérieur sur fond d'or par Toussaint-Xénophon Renaud. Orgue Casavant Frères de 1915 (6500 tuyaux). Vitraux de Limoges 1917."
+  },
+  {
+    "num": 11,
+    "name": "Maison Walter Reed",
+    "lat": 45.5503,
+    "lng": -73.5400,
+    "time": "11h46",
+    "duration": 6,
+    "desc": "Sur la rue Adam. Sixplex en pierre calcaire de 1904 attribué à Charles-Aimé Reeves. Walter Reed, menuisier devenu entrepreneur en bâtiment puis maire de la cité de Maisonneuve de 1905 à 1907."
+  },
+  {
+    "num": 12,
+    "name": "Banques Molson et de Toronto",
+    "lat": 45.5514,
+    "lng": -73.5411,
+    "time": "11h52",
+    "duration": 7,
+    "desc": "4240 et 4250 rue Ontario Est. Banque Molson de 1911 (Howard Colton Stone, attribution à confirmer), façade en pierre calcaire évoquant les temples antiques, aujourd'hui centre funéraire. Banque de Toronto contemporaine (Beaux-Arts en terre cuite émaillée blanc), Carrefour jeunesse-emploi aujourd'hui."
+  },
+  {
+    "num": 13,
+    "name": "Caserne n° 2 et Maison de la culture Maisonneuve",
+    "lat": 45.5514,
+    "lng": -73.5413,
+    "time": "11h59",
+    "duration": 8,
+    "desc": "4200 rue Ontario Est. Ancienne caserne de pompiers n° 2 (1906-1907) par Charles-Aimé Reeves, requalifiée en Maison de la culture en 2005-2006 par FABG. Annexe en verre côté avenue Desjardins. Prix d'excellence OAQ 2007."
+  },
+  {
+    "num": 14,
+    "name": "Site Dufresne et Locke (CLSC)",
+    "lat": 45.5514,
+    "lng": -73.5417,
+    "time": "12h07",
+    "duration": 4,
+    "desc": "4201 rue Ontario Est. Site de l'ancienne usine de chaussures Dufresne et Locke fondée par Thomas Dufresne (père des frères) avec Ralph Locke. Jusqu'à 500 ouvriers vers 1900. Subvention municipale de 9000 $ et exemption fiscale de 20 ans. Fermeture 1937. Bâtiment industriel non conservé."
+  },
+  {
+    "num": 15,
+    "name": "Watson Foster (Village des Valeurs)",
+    "lat": 45.5520,
+    "lng": -73.5430,
+    "time": "12h11",
+    "duration": 3,
+    "desc": "4115 rue Ontario Est / 2033 boul Pie-IX. Ancienne usine Watson Foster (1896-1897) d'Alexander Cowper Hutchison, manufacture de papier peint. Subvention de 9000 $ et exemption de 20 ans en échange de 75 emplois locaux. Papier peint jusqu'en 1954. Village des Valeurs depuis 1996."
+  },
+  {
+    "num": 16,
+    "name": "American Can Company (Renaissance Fripe)",
+    "lat": 45.5530,
+    "lng": -73.5450,
+    "time": "12h14",
+    "duration": 5,
+    "desc": "2030 boul Pie-IX. Ancienne American Can Company (1917-1918), bâtiment blanc en béton armé, premier exemple à Maisonneuve du daylight factory d'Albert Kahn. Successeur en 1987 : Emballages Onex. Acquise par Georges Coulombe en 2000, transformée en commerces et bureaux."
+  },
+  {
+    "num": 17,
+    "name": "Bibliothèque Maisonneuve (ancien hôtel de ville)",
+    "lat": 45.5510,
+    "lng": -73.5440,
+    "time": "12h19",
+    "duration": 10,
+    "type": "end",
+    "desc": "4120 rue Ontario Est. Conclusion du parcours. Ancien hôtel de ville de la cité de Maisonneuve (1910-1912) par Joseph-Cajetan Dufort, premier projet de la « politique des grandeurs ». Beaux-Arts tripartite. Institut du radium 1926-1967 (où meurt La Bolduc en 1941). Maison de la culture depuis 1981. Agrandissement 2018-2024 par Dan Hanganu architectes et EVOQ."
+  }
+]
