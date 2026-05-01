@@ -40,8 +40,11 @@ $ARGUMENTS
      de continuer.
    - Capturer la « Trame thématique ».
    - Pour chaque `## Arrêt N. <Nom>`, capturer le contenu sous `### Énoncé de la visite` et
-     `### Approfondissements`. Ignorer les sous-sections « Photo » et « Liens » (ces dernières seront
-     remplacées par un placeholder italique).
+     `### Approfondissements`. Ignorer la sous-section « Liens ». La sous-section « Photo » est
+     remplacée par un placeholder en italique **avec une description spécifique** déduite du contenu
+     de l'arrêt (ex. `*Espace réservé pour photo de la façade en brique de la gare Berri*`,
+     `*Espace réservé pour photo de l'emmarchement et du miroir cylindrique*`). Pas de placeholder
+     générique « *Espace réservé pour photo* » — toujours préciser ce que la photo doit montrer.
    - Capturer « Synthèse de la guide » et « Notes de vérification et points encore ouverts ».
 
 5. **Composer `stops.json`** : un tableau JSON dont chaque entrée a au minimum
@@ -66,7 +69,8 @@ $ARGUMENTS
    ```
    Puis le corps : `## Trame thématique`, séparateur `---`, chaque `## Arrêt N. <Nom>` avec ses
    sous-sections `### Énoncé de la visite`, `### Approfondissements`, `### Photo` (en
-   `*Espace réservé pour photo*`), séparateurs `---`, puis `## Synthèse de la guide`,
+   `*Espace réservé pour photo de <description spécifique>*`), séparateurs `---`, puis
+   `## Synthèse de la guide`,
    `## Notes de vérification et points encore ouverts`, et un paragraphe final en italique :
    ```
    *Notes de parcours rédigées à partir de la transcription audio nettoyée et vérifiées contre les

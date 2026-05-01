@@ -99,7 +99,7 @@ Espace réservé pour photo
 Le parser :
 - utilise le `<Nom de l'arrêt>` ici (plutôt que celui de la carte condensée) pour le titre de l'arrêt dans `index.mdx`,
 - copie intégralement « Énoncé de la visite » et « Approfondissements »,
-- transforme « Photo » en `*Espace réservé pour photo*` (italique),
+- remplace « Photo » par un placeholder italique avec **description spécifique** déduite du contenu de l'arrêt (ex. `*Espace réservé pour photo de la façade Beaux-Arts et des sculptures de Cérès et Hermès*`). Pas de placeholder générique,
 - ignore « Liens ».
 
 L'ordre des arrêts doit correspondre exactement à l'ordre des coordonnées dans la Carte du parcours et à l'ordre dans la Séquence des arrêts.

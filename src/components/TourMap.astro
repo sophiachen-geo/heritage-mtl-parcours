@@ -10,18 +10,34 @@ interface Stop {
   desc?: string;
 }
 
-interface Props {
+interface Track {
+  slug: string;
+  circuit: string;
+  title: string;
+  dateLabel: string;
+  href: string;
+  color: string;
   stops: Stop[];
+}
+
+interface Props {
+  tracks: Track[];
+  currentCircuit?: string;
   height?: string;
   id?: string;
 }
 
-const { stops, height = '600px', id = 'tour-map' } = Astro.props;
-const stopsJson = JSON.stringify(stops);
+const { tracks, currentCircuit, height = '600px', id = 'tour-map' } = Astro.props;
+const tracksJson = JSON.stringify(tracks);
 ---
 
 <div class="map-container" style={`--map-height: ${height};`}>
-  <div id={id} class="leaflet-host" data-stops={stopsJson}></div>
+  <div
+    id={id}
+    class="leaflet-host"
+    data-tracks={tracksJson}
+    data-current={currentCircuit ?? ''}
+  ></div>
   <div class="compass" aria-hidden="true">
     <svg viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="45" fill="none" stroke="#7c2d12" stroke-width="0.5" opacity="0.4" />
@@ -35,6 +51,21 @@ const stopsJson = JSON.stringify(stops);
     </svg>
   </div>
   <div class="loading-route" id={`${id}-loading`}>Tracé en cours…</div>
+</div>
+
+<div class="map-legend" aria-label="Légende des parcours sur la carte">
+  <span class="legend-title">Parcours</span>
+  <ul class="legend-list">
+    {tracks.map((t) => (
+      <li class:list={['legend-item', currentCircuit && t.circuit === currentCircuit && 'is-current']}>
+        <a href={t.href}>
+          <span class="swatch" style={`background: ${t.color};`} aria-hidden="true"></span>
+          <span class="legend-label">Circuit n° {t.circuit}</span>
+          <span class="legend-date">{t.dateLabel}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
 </div>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -60,7 +91,7 @@ const stopsJson = JSON.stringify(stops);
     filter: sepia(0.32) saturate(0.78) hue-rotate(-8deg) contrast(0.96) brightness(1.02);
   }
 
-  /* Marqueurs personnalisés */
+  /* Marqueurs personnalisés (couleur définie par variable --c sur l'inner div) */
   :global(.stop-marker) {
     background: transparent !important;
     border: none !important;
@@ -71,8 +102,8 @@ const stopsJson = JSON.stringify(stops);
     height: 36px;
     border-radius: 50%;
     background: var(--paper);
-    border: 2px solid var(--azure);
-    color: var(--azure);
+    border: 2px solid var(--c, var(--azure));
+    color: var(--c, var(--azure));
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 1.05rem;
@@ -80,27 +111,34 @@ const stopsJson = JSON.stringify(stops);
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 8px rgba(28, 24, 20, 0.25);
-    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease;
     position: relative;
   }
 
   :global(.stop-marker.start .stop-marker-inner) {
-    background: var(--jade);
-    border-color: var(--jade);
+    background: var(--c);
     color: var(--paper);
   }
 
   :global(.stop-marker.end .stop-marker-inner) {
-    background: var(--gold);
-    border-color: var(--gold);
+    background: var(--c);
     color: var(--paper);
+    box-shadow: 0 0 0 2px var(--paper) inset, 0 2px 8px rgba(28, 24, 20, 0.25);
+  }
+
+  :global(.stop-marker.dim .stop-marker-inner) {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+
+  :global(.stop-marker.dim:hover .stop-marker-inner) {
+    opacity: 1;
+    transform: scale(0.95);
   }
 
   :global(.stop-marker.active .stop-marker-inner) {
     transform: scale(1.2);
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--paper);
+    opacity: 1;
   }
 
   /* Popups */
@@ -122,6 +160,24 @@ const stopsJson = JSON.stringify(stops);
   :global(.leaflet-popup-tip) {
     background: var(--paper);
     border: 1px solid var(--rule);
+  }
+
+  :global(.popup-circuit) {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-1);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  :global(.popup-circuit-swatch) {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
   }
 
   :global(.popup-num) {
@@ -157,6 +213,15 @@ const stopsJson = JSON.stringify(stops);
     font-size: 0.85rem;
     color: var(--ink-soft);
     line-height: 1.55;
+  }
+
+  :global(.popup-link) {
+    display: inline-block;
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   :global(.leaflet-control-attribution) {
@@ -228,9 +293,81 @@ const stopsJson = JSON.stringify(stops);
     pointer-events: none;
   }
 
+  /* Légende, sous la carte */
+  .map-legend {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: none;
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-4) var(--space-5);
+  }
+
+  .legend-title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .legend-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-5);
+  }
+
+  .legend-item a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    text-decoration: none;
+    color: var(--ink-soft);
+    transition: color 200ms ease;
+  }
+
+  .legend-item a:hover { color: var(--ink); }
+
+  .legend-item.is-current a {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 1px 2px rgba(28, 24, 20, 0.2);
+  }
+
+  .legend-item.is-current .swatch {
+    box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px currentColor;
+  }
+
+  .legend-label {
+    font-family: var(--font-display);
+    font-size: 1rem;
+  }
+
+  .legend-date {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+  }
+
   @media (max-width: 540px) {
     .compass { width: 50px; height: 50px; }
     .compass svg { width: 36px; height: 36px; }
+    .map-legend { padding: var(--space-3) var(--space-4); }
   }
 </style>
 
@@ -258,12 +395,32 @@ const stopsJson = JSON.stringify(stops);
     desc?: string;
   };
 
+  type Track = {
+    slug: string;
+    circuit: string;
+    title: string;
+    dateLabel: string;
+    href: string;
+    color: string;
+    stops: Stop[];
+  };
+
   function pad(n: number) { return String(n).padStart(2, '0'); }
+
+  function escapeHtml(s: string) {
+    return s
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
 
   async function initMap(host: HTMLElement) {
     const L = await loadLeaflet();
-    const stops: Stop[] = JSON.parse(host.dataset.stops || '[]');
-    if (!stops.length) return;
+    const tracks: Track[] = JSON.parse(host.dataset.tracks || '[]');
+    const current = host.dataset.current || '';
+    if (!tracks.length) return;
 
     const map = L.map(host, {
       zoomControl: true,
@@ -282,70 +439,101 @@ const stopsJson = JSON.stringify(stops);
     map.on('click', () => map.scrollWheelZoom.enable());
     map.on('mouseout', () => map.scrollWheelZoom.disable());
 
-    function makeIcon(stop: Stop) {
-      const cls = stop.type === 'start' ? 'start' : (stop.type === 'end' ? 'end' : '');
+    function makeIcon(stop: Stop, track: Track, isCurrent: boolean) {
+      const typeCls = stop.type === 'start' ? 'start' : (stop.type === 'end' ? 'end' : 'intermediate');
+      const dimCls = isCurrent ? '' : 'dim';
       return L.divIcon({
-        className: 'stop-marker ' + cls,
-        html: `<div class="stop-marker-inner">${stop.num}</div>`,
+        className: `stop-marker ${typeCls} ${dimCls}`.trim(),
+        html: `<div class="stop-marker-inner" style="--c: ${track.color}">${stop.num}</div>`,
         iconSize: [36, 36],
         iconAnchor: [18, 18],
         popupAnchor: [0, -18],
       });
     }
 
-    const markers: Record<number, L.Marker> = {};
-    stops.forEach((s) => {
-      const m = L.marker([s.lat, s.lng], { icon: makeIcon(s) }).addTo(map);
-      const meta = [s.time, s.duration ? `${s.duration} min` : null].filter(Boolean).join(' · ');
-      const popupHtml = `
-        <div class="popup-num">Arrêt ${pad(s.num)}</div>
-        <div class="popup-name">${s.name}</div>
-        ${meta ? `<div class="popup-meta">${meta}</div>` : ''}
-        ${s.desc ? `<div class="popup-desc">${s.desc}</div>` : ''}
-      `;
-      m.bindPopup(popupHtml, { closeButton: true, autoPan: true });
-      markers[s.num] = m;
-    });
+    // Index des marqueurs : circuit -> num -> Marker
+    const markerIndex: Record<string, Record<number, any>> = {};
+    const allLatLngs: [number, number][] = [];
 
-    // Cadrage automatique
-    const bounds = L.latLngBounds(stops.map(s => [s.lat, s.lng]));
-    map.fitBounds(bounds, { padding: [60, 60] });
+    for (const track of tracks) {
+      const isCurrent = current ? track.circuit === current : true;
+      markerIndex[track.circuit] = {};
 
-    // Récupérer le tracé piéton via OSRM avec repli sur lignes droites
-    const loadingEl = document.getElementById(host.id + '-loading');
-    const coords = stops.map(s => `${s.lng},${s.lat}`).join(';');
-    const url = `https://router.project-osrm.org/route/v1/foot/${coords}?overview=full&geometries=geojson`;
-
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('OSRM unavailable');
-      const data = await res.json();
-      if (!data.routes || !data.routes.length) throw new Error('No route');
-
-      const latlngs = data.routes[0].geometry.coordinates.map((c: [number, number]) => [c[1], c[0]] as [number, number]);
-      L.polyline(latlngs, { color: '#7c2d12', weight: 8, opacity: 0.08, lineCap: 'round' }).addTo(map);
-      L.polyline(latlngs, { color: '#7c2d12', weight: 3, opacity: 0.85, dashArray: '1, 8', lineCap: 'round' }).addTo(map);
-      loadingEl?.classList.add('hidden');
-    } catch {
-      const latlngs = stops.map(s => [s.lat, s.lng] as [number, number]);
-      L.polyline(latlngs, { color: '#7c2d12', weight: 2.5, opacity: 0.6, dashArray: '2, 8' }).addTo(map);
-      if (loadingEl) {
-        loadingEl.textContent = 'Tracé approximatif';
-        setTimeout(() => loadingEl.classList.add('hidden'), 1500);
+      for (const s of track.stops) {
+        const m = L.marker([s.lat, s.lng], { icon: makeIcon(s, track, isCurrent) }).addTo(map);
+        const meta = [s.time, s.duration ? `${s.duration} min` : null].filter(Boolean).join(' · ');
+        const showCircuitHeader = !current || track.circuit !== current;
+        const popupHtml = `
+          ${showCircuitHeader ? `
+            <div class="popup-circuit">
+              <span class="popup-circuit-swatch" style="background: ${track.color}"></span>
+              Circuit n° ${escapeHtml(track.circuit)} · ${escapeHtml(track.dateLabel)}
+            </div>
+          ` : ''}
+          <div class="popup-num">Arrêt ${pad(s.num)}</div>
+          <div class="popup-name">${escapeHtml(s.name)}</div>
+          ${meta ? `<div class="popup-meta">${escapeHtml(meta)}</div>` : ''}
+          ${s.desc ? `<div class="popup-desc">${escapeHtml(s.desc)}</div>` : ''}
+          ${showCircuitHeader ? `<a class="popup-link" href="${escapeHtml(track.href)}">Voir ce circuit →</a>` : ''}
+        `;
+        m.bindPopup(popupHtml, { closeButton: true, autoPan: true });
+        markerIndex[track.circuit][s.num] = m;
+        allLatLngs.push([s.lat, s.lng]);
       }
     }
 
-    // Exposer le pilotage par numéro pour la barre latérale
+    // Cadrage automatique sur l'ensemble des arrêts de tous les parcours
+    if (allLatLngs.length) {
+      map.fitBounds(L.latLngBounds(allLatLngs), { padding: [60, 60] });
+    }
+
+    // Récupérer le tracé piéton via OSRM pour chaque parcours, en parallèle.
+    // Repli sur lignes droites par parcours en cas d'échec individuel.
+    const loadingEl = document.getElementById(host.id + '-loading');
+    const routePromises = tracks.map(async (track) => {
+      const isCurrent = current ? track.circuit === current : true;
+      const baseOpacity = isCurrent ? 0.85 : 0.4;
+      const glowOpacity = isCurrent ? 0.08 : 0.04;
+      const coords = track.stops.map(s => `${s.lng},${s.lat}`).join(';');
+      const url = `https://router.project-osrm.org/route/v1/foot/${coords}?overview=full&geometries=geojson`;
+
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('OSRM unavailable');
+        const data = await res.json();
+        if (!data.routes || !data.routes.length) throw new Error('No route');
+        const latlngs = data.routes[0].geometry.coordinates.map((c: [number, number]) => [c[1], c[0]] as [number, number]);
+        L.polyline(latlngs, { color: track.color, weight: 8, opacity: glowOpacity, lineCap: 'round' }).addTo(map);
+        L.polyline(latlngs, { color: track.color, weight: 3, opacity: baseOpacity, dashArray: '1, 8', lineCap: 'round' }).addTo(map);
+      } catch {
+        const latlngs = track.stops.map(s => [s.lat, s.lng] as [number, number]);
+        L.polyline(latlngs, {
+          color: track.color,
+          weight: 2.5,
+          opacity: isCurrent ? 0.6 : 0.3,
+          dashArray: '2, 8',
+        }).addTo(map);
+      }
+    });
+
+    Promise.allSettled(routePromises).then(() => {
+      if (!loadingEl) return;
+      loadingEl.classList.add('hidden');
+    });
+
+    // Exposer le pilotage par numéro pour la barre latérale.
+    // open() bascule sur le marqueur correspondant du circuit courant si fourni,
+    // sinon sur le premier circuit qui contient ce numéro.
     (host as any)._tourMap = {
-      open: (n: number) => {
-        const m = markers[n];
+      open: (n: number, circuit?: string) => {
+        const targetCircuit = circuit ?? current ?? tracks[0]?.circuit;
+        const m = targetCircuit ? markerIndex[targetCircuit]?.[n] : undefined;
         if (!m) return;
         map.flyTo(m.getLatLng(), 17, { duration: 0.7 });
         m.openPopup();
-      }
+      },
     };
   }
 
-  // Initialiser tous les conteneurs au chargement
   document.querySelectorAll<HTMLElement>('.leaflet-host').forEach(initMap);
 </script>
