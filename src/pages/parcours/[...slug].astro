@@ -1,0 +1,75 @@
+---
+import { getCollection, render } from 'astro:content';
+import ParcoursLayout from '../../layouts/ParcoursLayout.astro';
+import TourMap from '../../components/TourMap.astro';
+import StopsList from '../../components/StopsList.astro';
+
+export async function getStaticPaths() {
+  const parcours = await getCollection('parcours', ({ data }) => !data.draft);
+  return parcours.map((entry) => ({
+    params: { slug: entry.id.replace(/\/index$/, '') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Charger le fichier stops.json adjacent à index.mdx via l'API d'import dynamique
+// Note : Astro résout les chemins de glob à la racine du projet
+const stopsModules = import.meta.glob<{ default: any[] }>('../../content/parcours/**/stops.json', { eager: true });
+const stopsKey = Object.keys(stopsModules).find((k) => k.includes(entry.id.replace(/\/index$/, '')));
+const stops = stopsKey ? stopsModules[stopsKey].default : [];
+---
+
+<ParcoursLayout
+  title={entry.data.title}
+  subtitle={entry.data.subtitle}
+  series={entry.data.series}
+  circuit={entry.data.circuit}
+  date={entry.data.date}
+  duration={entry.data.duration}
+  distance={entry.data.distance}
+  stopsCount={entry.data.stopsCount}
+  organizer={entry.data.organizer}
+  summary={entry.data.summary}
+>
+  {stops.length > 0 && (
+    <section class="map-section">
+      <div class="map-grid">
+        <div class="map-col">
+          <TourMap stops={stops} height="640px" id="parcours-map" />
+        </div>
+        <div class="sidebar-col">
+          <StopsList stops={stops} mapId="parcours-map" />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="prose">
+    <Content />
+  </section>
+</ParcoursLayout>
+
+<style>
+  .map-section {
+    margin-bottom: var(--space-8);
+  }
+
+  .map-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 1000px) {
+    .map-grid {
+      grid-template-columns: 1fr;
+    }
+    .sidebar-col {
+      max-height: 500px;
+      overflow-y: auto;
+    }
+  }
+</style>

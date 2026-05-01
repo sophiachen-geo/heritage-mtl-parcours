@@ -1,0 +1,298 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const allParcours = await getCollection('parcours', ({ data }) => !data.draft);
+const sorted = allParcours.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Regrouper par série, puis par année
+const grouped = new Map<string, Map<number, typeof sorted>>();
+for (const p of sorted) {
+  const series = p.data.series;
+  const year = p.data.date.getFullYear();
+  if (!grouped.has(series)) grouped.set(series, new Map());
+  const yearMap = grouped.get(series)!;
+  if (!yearMap.has(year)) yearMap.set(year, []);
+  yearMap.get(year)!.push(p);
+}
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Notes de parcours — Héritage Montréal" description="Archive personnelle des visites guidées d'Héritage Montréal, avec notes détaillées, cartes interactives et photographies.">
+  <Header />
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="overline">Archive personnelle</p>
+        <h1>Notes de parcours patrimoniaux</h1>
+        <p class="lede">
+          Recueil des visites guidées d'Héritage Montréal et d'organismes apparentés,
+          enrichies de recherches complémentaires, de cartes interactives et de
+          photographies prises sur le terrain. Chaque circuit fait l'objet d'une fiche
+          détaillée, vérifiée contre les sources patrimoniales institutionnelles.
+        </p>
+      </div>
+    </section>
+
+    <section class="catalogue container" id="visites">
+      {[...grouped.entries()].map(([series, yearMap]) => (
+        <div class="series-block">
+          <h2 class="series-title">{series}</h2>
+          {[...yearMap.entries()]
+            .sort(([a], [b]) => b - a)
+            .map(([year, items]) => (
+              <div class="year-block">
+                <h3 class="year-title">{year}</h3>
+                <ul class="parcours-list">
+                  {items.map((p) => (
+                    <li class="parcours-card">
+                      <a href={`${base}parcours/${p.id.replace(/\/index$/, '')}`}>
+                        <div class="card-header">
+                          <span class="card-circuit">Circuit n° {p.data.circuit}</span>
+                          <span class="card-date">
+                            {p.data.date.toLocaleDateString('fr-CA', {
+                              month: 'long',
+                              day: 'numeric',
+                            })}
+                          </span>
+                        </div>
+                        <h4 class="card-title">{p.data.title}</h4>
+                        {p.data.subtitle && <p class="card-subtitle">{p.data.subtitle}</p>}
+                        <p class="card-summary">{p.data.summary}</p>
+                        <div class="card-meta">
+                          <span>{p.data.duration}</span>
+                          <span class="dot">·</span>
+                          <span>{p.data.distance}</span>
+                          <span class="dot">·</span>
+                          <span>{p.data.stopsCount} arrêts</span>
+                        </div>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+        </div>
+      ))}
+
+      {grouped.size === 0 && (
+        <p class="empty-state">
+          Aucune visite publiée pour l'instant. Ajoutez un dossier dans
+          <code>src/content/parcours/</code> pour commencer.
+        </p>
+      )}
+    </section>
+
+    <section class="about container" id="a-propos">
+      <h2>À propos de cette archive</h2>
+      <p>
+        Cette archive personnelle rassemble les notes prises lors de visites guidées
+        d'Héritage Montréal et d'autres organismes patrimoniaux montréalais.
+        Pour chaque parcours, le texte combine la transcription nettoyée des
+        commentaires de la guide et un travail d'approfondissement vérifié contre
+        des sources institutionnelles : le Répertoire du patrimoine culturel du
+        Québec, l'Inventaire des bâtiments du Vieux-Montréal, les notices de
+        Parcs Canada, ainsi que la documentation des bâtiments concernés.
+      </p>
+      <p>
+        Les cartes interactives utilisent OpenStreetMap pour le fond cartographique
+        et le service public OSRM pour calculer les tracés piétonniers exacts entre
+        les arrêts. Les photographies sont prises sur place lors des visites ou
+        lors de retours ultérieurs sur le terrain.
+      </p>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: var(--space-8) 0 var(--space-7);
+    border-bottom: 1px solid var(--rule);
+    background:
+      linear-gradient(180deg, var(--paper-soft) 0%, var(--cream) 100%);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: var(--space-4) 0 var(--space-5);
+    max-width: 800px;
+  }
+
+  .hero .lede {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    max-width: 700px;
+    font-weight: 400;
+  }
+
+  .catalogue {
+    padding: var(--space-7) var(--space-6);
+  }
+
+  .series-block {
+    margin-bottom: var(--space-8);
+  }
+
+  .series-title {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-6);
+    display: inline-block;
+  }
+
+  .year-block {
+    margin-bottom: var(--space-6);
+  }
+
+  .year-title {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+    margin: 0 0 var(--space-4);
+  }
+
+  .parcours-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .parcours-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms ease, border-color 200ms ease;
+  }
+
+  .parcours-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+  }
+
+  .parcours-card a {
+    display: block;
+    padding: var(--space-5);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-3);
+  }
+
+  .card-circuit {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .card-date {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 var(--space-2);
+    color: var(--ink);
+  }
+
+  .card-subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-3);
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .card-summary {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: var(--space-4);
+  }
+
+  .card-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  .card-meta .dot {
+    margin: 0 var(--space-2);
+    color: var(--rule);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--space-8) var(--space-5);
+    color: var(--ink-muted);
+    font-style: italic;
+    background: var(--paper);
+    border: 1px dashed var(--rule);
+  }
+
+  .empty-state code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--cream-deep);
+    padding: 2px 6px;
+  }
+
+  .about {
+    padding: var(--space-7) var(--space-6);
+    border-top: 1px solid var(--rule);
+    max-width: 800px;
+  }
+
+  .about h2 {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .about p {
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: var(--space-4);
+  }
+</style>

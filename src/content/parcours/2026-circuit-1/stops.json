@@ -1,0 +1,112 @@
+[
+  {
+    "num": 1,
+    "name": "Place des Montréalaises",
+    "lat": 45.5098,
+    "lng": -73.5561,
+    "time": "17h30",
+    "duration": 10,
+    "type": "start",
+    "desc": "Point de départ. Place inaugurée le 16 mai 2025 ; verrière de Marcelle Ferron à la station Champ-de-Mars (1968)."
+  },
+  {
+    "num": 2,
+    "name": "Champ-de-Mars",
+    "lat": 45.5087,
+    "lng": -73.5553,
+    "time": "17h40",
+    "duration": 8,
+    "desc": "Vestiges des fortifications Chaussegros de Léry (1717-1745). Fouilles archéologiques 1986-1991, réaménagement en 1992 pour le 350e anniversaire."
+  },
+  {
+    "num": 3,
+    "name": "Place De La Dauversière, hôtel de ville",
+    "lat": 45.5089,
+    "lng": -73.5543,
+    "time": "17h48",
+    "duration": 10,
+    "desc": "Hôtel de ville Second Empire (1872-1878), incendie 1922, reconstruction 1923-1926. Évolution des pratiques patrimoniales québécoises."
+  },
+  {
+    "num": 4,
+    "name": "Château Ramezay",
+    "lat": 45.5087,
+    "lng": -73.5531,
+    "time": "17h58",
+    "duration": 8,
+    "desc": "Construit en 1705-1706 pour Claude de Ramezay, reconstruit en 1755-1756. Premier bâtiment classé au Québec (1929)."
+  },
+  {
+    "num": 5,
+    "name": "Marché Bonsecours",
+    "lat": 45.5090,
+    "lng": -73.5515,
+    "time": "18h06",
+    "duration": 7,
+    "desc": "Construction 1844-1847 par William Footner. Hôtel de ville de Montréal de 1852 à 1878. Dôme argenté caractéristique."
+  },
+  {
+    "num": 6,
+    "name": "Chapelle Notre-Dame-de-Bon-Secours",
+    "lat": 45.5098,
+    "lng": -73.5511,
+    "time": "18h13",
+    "duration": 7,
+    "desc": "Fondée par Marguerite Bourgeoys au XVIIe siècle. Chapelle actuelle 1771-1773. Chapelle des marins, ex-voto suspendus."
+  },
+  {
+    "num": 7,
+    "name": "Hangar 16 (SOS Labyrinthe)",
+    "lat": 45.5092,
+    "lng": -73.5502,
+    "time": "18h20",
+    "duration": 8,
+    "desc": "Hangar 1911-1913, Canada Line, liaisons transatlantiques. Reconversions ludiques en 1997, 2001 et 2015."
+  },
+  {
+    "num": 8,
+    "name": "Tour de l'Horloge",
+    "lat": 45.5123,
+    "lng": -73.5458,
+    "time": "18h28",
+    "duration": 8,
+    "desc": "Construite 1919-1922 par Paul Leclaire en mémoire des marins de la marine marchande. Plage de l'Horloge (Claude Cormier, 2011-2013)."
+  },
+  {
+    "num": 9,
+    "name": "Belvédère du Chemin-Qui-Marche",
+    "lat": 45.5128,
+    "lng": -73.5490,
+    "time": "18h36",
+    "duration": 7,
+    "desc": "Parc linéaire inauguré le 17 septembre 2012. Toponyme d'origine autochtone désignant le fleuve Saint-Laurent."
+  },
+  {
+    "num": 10,
+    "name": "Gare Dalhousie (Cirque Éloize)",
+    "lat": 45.5116,
+    "lng": -73.5515,
+    "time": "18h43",
+    "duration": 5,
+    "desc": "Gare ferroviaire 1883-1884 par Thomas C. Sorby. Premier train transcontinental canadien le 28 juin 1886. Cirque Éloize depuis 2004."
+  },
+  {
+    "num": 11,
+    "name": "Place Gare Viger",
+    "lat": 45.5122,
+    "lng": -73.5525,
+    "time": "18h48",
+    "duration": 5,
+    "desc": "Gare-hôtel Viger du Canadien Pacifique, 1898, par Bruce Price. Maisons de bois du XVIIIe siècle subsistantes à proximité."
+  },
+  {
+    "num": 12,
+    "name": "Cours Le Royer",
+    "lat": 45.5050,
+    "lng": -73.5549,
+    "time": "18h53",
+    "duration": 7,
+    "type": "end",
+    "desc": "Conclusion. Anciens entrepôts des Hospitalières de Saint-Joseph (XIXe siècle) reconvertis en logements et cour intérieure paysagère."
+  }
+]

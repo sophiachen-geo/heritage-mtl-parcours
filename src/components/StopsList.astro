@@ -1,0 +1,172 @@
+---
+interface Stop {
+  num: number;
+  name: string;
+  time?: string;
+  duration?: number;
+  type?: 'start' | 'end' | 'intermediate';
+  desc?: string;
+}
+
+interface Props {
+  stops: Stop[];
+  mapId?: string;
+}
+
+const { stops, mapId = 'tour-map' } = Astro.props;
+
+function pad(n: number) { return String(n).padStart(2, '0'); }
+---
+
+<aside class="stops-list" data-map-id={mapId}>
+  <div class="stops-header">
+    <h2>Itinéraire</h2>
+    <p class="legend">Cliquer un arrêt pour le centrer sur la carte</p>
+  </div>
+  <ol class="stops">
+    {stops.map((s) => (
+      <li
+        class:list={[
+          'stop-item',
+          s.type === 'start' && 'start',
+          s.type === 'end' && 'end',
+        ]}
+        data-num={s.num}
+      >
+        <span class="stop-num">{pad(s.num)}</span>
+        <div class="stop-content">
+          <div class="stop-name">{s.name}</div>
+          {(s.time || s.duration) && (
+            <div class="stop-time">
+              {s.time}
+              {s.time && s.duration && <span class="dot">·</span>}
+              {s.duration && `${s.duration} min`}
+            </div>
+          )}
+          {s.desc && <div class="stop-desc">{s.desc}</div>}
+        </div>
+      </li>
+    ))}
+  </ol>
+</aside>
+
+<style>
+  .stops-list {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+  }
+
+  .stops-header {
+    padding: var(--space-5) var(--space-5) var(--space-4);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .stops-header h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.6rem;
+    margin: 0 0 var(--space-1);
+  }
+
+  .legend {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 0;
+  }
+
+  .stops {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .stop-item {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--rule-soft);
+    cursor: pointer;
+    transition: background 200ms ease;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: var(--space-4);
+    position: relative;
+  }
+
+  .stop-item:last-child { border-bottom: none; }
+
+  .stop-item:hover { background: var(--cream); }
+
+  .stop-item.active { background: var(--cream-deep); }
+
+  .stop-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+  }
+
+  .stop-num {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.65rem;
+    line-height: 1;
+    color: var(--ink-muted);
+    text-align: center;
+    border-right: 1px solid var(--rule-soft);
+    padding-right: var(--space-3);
+    padding-top: 0.1em;
+    font-feature-settings: 'lnum' 1;
+  }
+
+  .stop-item.start .stop-num { color: var(--jade); }
+  .stop-item.end .stop-num { color: var(--gold); }
+  .stop-item.active .stop-num { color: var(--accent); }
+
+  .stop-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: var(--space-1);
+    color: var(--ink);
+  }
+
+  .stop-time {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
+  }
+
+  .stop-time .dot {
+    margin: 0 var(--space-2);
+    color: var(--rule);
+  }
+
+  .stop-desc {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.stops-list').forEach((list) => {
+    const mapId = list.dataset.mapId || 'tour-map';
+    const items = list.querySelectorAll<HTMLElement>('.stop-item');
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        const num = parseInt(item.dataset.num || '0', 10);
+        const host = document.getElementById(mapId) as any;
+        if (host?._tourMap) host._tourMap.open(num);
+        items.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+  });
+</script>

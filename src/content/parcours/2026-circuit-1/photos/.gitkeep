@@ -1,0 +1,14 @@
+Placez vos photographies dans ce dossier.
+
+Convention de nommage suggérée :
+  01-place-montrealaises-verriere.jpg
+  02-champ-de-mars-fortifications.jpg
+  03-hotel-de-ville-facade.jpg
+  ...
+
+Pour les insérer dans les notes, utilisez la syntaxe markdown standard
+dans index.mdx, à l'endroit voulu :
+
+  ![Description accessible de la photo](./photos/01-place-montrealaises-verriere.jpg)
+
+Astro générera automatiquement plusieurs tailles responsive.

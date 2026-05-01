@@ -1,0 +1,80 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="col">
+      <h4 class="footer-heading">À propos</h4>
+      <p>
+        Notes de parcours patrimoniaux établies à partir des visites guidées
+        d'Héritage Montréal et vérifiées contre les sources institutionnelles
+        (Répertoire du patrimoine culturel du Québec, Inventaire des bâtiments du
+        Vieux-Montréal, Parcs Canada).
+      </p>
+    </div>
+    <div class="col">
+      <h4 class="footer-heading">Sources</h4>
+      <p>
+        <a href="https://www.heritagemontreal.org" rel="external">heritagemontreal.org</a><br />
+        <a href="https://www.patrimoine-culturel.gouv.qc.ca" rel="external">Répertoire du patrimoine culturel du Québec</a><br />
+        <a href="https://www.vieux.montreal.qc.ca" rel="external">Vieux-Montréal — Ville de Montréal</a>
+      </p>
+    </div>
+    <div class="col">
+      <h4 class="footer-heading">Colophon</h4>
+      <p>
+        Site bâti avec Astro et Leaflet. Typographie en Cormorant Garamond et
+        DM Sans. Hébergé sur GitHub Pages.
+      </p>
+      <p class="copyright">© {year}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--rule);
+    background: var(--cream-deep);
+    padding: var(--space-7) 0 var(--space-6);
+    margin-top: var(--space-9);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-7);
+  }
+
+  .col p {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .footer-heading {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+    margin-bottom: var(--space-3);
+    margin-top: 0;
+  }
+
+  .copyright {
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 800px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+  }
+</style>
