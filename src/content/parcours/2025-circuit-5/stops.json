@@ -1,76 +1,130 @@
 [
   {
     "num": 0,
-    "name": "Champ des Possibles (point de rendez-vous)",
+    "name": "Champ des Possibles (introduction prolongée)",
     "lat": 45.5240,
     "lng": -73.6010,
     "time": "10h30",
-    "duration": 5,
+    "duration": 25,
     "type": "start",
-    "desc": "Coin De Gaspé × Saint-Viateur, à 12 minutes de marche du métro Rosemont. Ancien terrain ferroviaire en friche urbaine, devenu espace public co-géré avec la Société écocitoyenne du Champ des Possibles depuis 2013."
+    "desc": "Coin De Gaspé × allée Saint-Viateur. Six blocs thématiques en 25 minutes : trois vagues économiques du secteur Saint-Viateur Est ; histoire stratifiée du site (carrière, dépotoir, cour de triage CP 1906, vente à la Ville en juin 2009) ; biodiversité (423 espèces recensées en 2017) ; contamination du sol ; mobilisation citoyenne 2006-2010 ; défis actuels."
   },
   {
     "num": 1,
-    "name": "Entrepôt Van Horne",
-    "lat": 45.5224,
-    "lng": -73.5972,
-    "time": "10h38",
-    "duration": 6,
-    "desc": "1 et 55 avenue Van Horne (× boulevard Saint-Laurent). Construit en 1924 par l'entrepreneur Wilfrid Duquette à la suite d'un litige sur le viaduc Van Horne (achevé en 1911). Sept étages en béton armé revêtu de briques, surmonté d'une tour d'eau industrielle."
+    "name": "Lofts de Gaspé",
+    "lat": 45.5230,
+    "lng": -73.5980,
+    "time": "11h00",
+    "duration": 8,
+    "desc": "5265 avenue De Gaspé. Bâtiment industriel en béton armé daté de 1922, construit comme garage et entrepôt pour International Harvester. Embranchement ferroviaire dévié de la ligne CP. Reconverti en lofts en 2014 par UN Architecture (31 lofts plus 6 maisons de ville). Structure et ventilation industrielle conservées."
   },
   {
     "num": 2,
-    "name": "Réseau Vert et Jardin du Crépuscule",
-    "lat": 45.5230,
-    "lng": -73.6000,
-    "time": "10h44",
-    "duration": 5,
-    "desc": "Tronçon de 3 km sur les terrains du Canadien Pacifique entre Fullum et Saint-Dominique, conçu par l'urbaniste Jean Décarie dans les années 1980, inauguré en 1994. Le Jardin du Crépuscule est une intervention guérilla initiée en 1999 par Glen LeMesurier, environ 80 sculptures en pièces industrielles récupérées."
+    "name": "Bain Saint-Michel (ancien Bain Turcot)",
+    "lat": 45.5253,
+    "lng": -73.5995,
+    "time": "11h08",
+    "duration": 12,
+    "desc": "Rue Saint-Dominique. Bain public Beaux-Arts construit en 1909-1910 par Zotique Trudel, projet du maire Napoléon Turcot juste avant l'annexion de Saint-Louis à Montréal en 1910. Renommé Bain Saint-Michel en 1936-1937. Piscine fermée en 1993, lieu de diffusion artistique 1998-2014, rénovation relancée à l'été 2025, réouverture prévue en 2027 comme centre culturel."
   },
   {
     "num": 3,
-    "name": "Parc des Gorilles",
-    "lat": 45.5343,
-    "lng": -73.6135,
-    "time": "10h57",
+    "name": "Ancien United Dairy",
+    "lat": 45.5258,
+    "lng": -73.5982,
+    "time": "11h20",
     "duration": 8,
-    "desc": "Ancien terrain CP, retombé en friche puis recolonisé. Mobilisation citoyenne en mai 2013 contre l'abattage illégal de plus de 50 arbres par le Groupe Olymbec ; expropriation 2018 ; conception civiliti ; inauguré à l'automne 2024."
+    "desc": "5434 rue Saint-Dominique. Bâtiment Art déco moderniste construit en 1933 par Charles Davis Goodman (auteur de l'Hôpital général juif et du Ben's De Luxe). United Dairy 1930-1938, Snowdon Dairy 1938-1954, usages textiles 1960-1990, restauration 2009 pour Latitude Nord. Pasteurisation obligatoire à Montréal dès 1926."
   },
   {
     "num": 4,
-    "name": "O Mile-Ex (ancien Main Knitting)",
-    "lat": 45.5320,
-    "lng": -73.6135,
-    "time": "11h05",
-    "duration": 3,
-    "desc": "6666 rue Saint-Urbain. Anciens bâtiments d'usine textile occupés par Main Knitting (1966-2008), rénovés par Lemay 2014-2018 (370 000 pi²). Hôte de Mila depuis janvier 2019, Behaviour Interactive et autres entreprises de l'économie du savoir."
+    "name": "Édifice Peck (Ubisoft)",
+    "lat": 45.5247,
+    "lng": -73.5972,
+    "time": "11h28",
+    "duration": 15,
+    "desc": "5505 boulevard Saint-Laurent. Manufacture de vêtements J. W. Peck & Co. (1904), architectes Joseph Perrault et Simon Lesage. Boni de 20 000 $ et congé de taxes 20 ans accordés par la cité de Saint-Louis. Aile agrandie en 1913 (800 employés). Reconvertie pour Discreet Logic (1993-1997) puis Ubisoft (depuis 1997). Restaurants et terrasse sur le toit, Lemay 2013."
   },
   {
     "num": 5,
-    "name": "Édifice Microsoft (6795 Marconi)",
-    "lat": 45.5325,
-    "lng": -73.6160,
-    "time": "11h17",
-    "duration": 3,
-    "desc": "6795 rue Marconi. Ancien transformateur alimentaire Nostrano (1986-2018). Redéveloppement 2020 : démolition partielle, ajout d'un étage en acier, nouvelle enveloppe en mur-rideau, 110 000 pi². Microsoft Research Montréal s'y installe en 2018-2019."
+    "name": "Ancienne gare du Mile End et Kabane 77",
+    "lat": 45.5260,
+    "lng": -73.5985,
+    "time": "11h43",
+    "duration": 8,
+    "desc": "77 rue Bernard Est. Emplacement de la gare du Mile End (1877, agrandie 1911), démolie en 1970 pour le viaduc Rosemont-Van Horne. Entrepôt préfabriqué en acier construit en 1959-1960. Terrain vendu par CP à la Ville le 15 juillet 2009. Kabane 77, lieu de cinéma indépendant lancé en 2012, incendié en 2019 ; seule la charpente métallique subsiste."
   },
   {
     "num": 6,
-    "name": "Bureaux Henri Cleinge architecte",
-    "lat": 45.5300,
-    "lng": -73.6150,
-    "time": "11h19",
-    "duration": 1,
-    "desc": "165 avenue Beaumont. Édifice contemporain en béton signé par l'architecte Henri Cleinge pour son propre usage (bureaux à droite, résidence à gauche). Cas-type du « quartier des architectes » du Mile-Ex."
+    "name": "Viaduc Rosemont-Van Horne et skatepark",
+    "lat": 45.5266,
+    "lng": -73.5990,
+    "time": "11h51",
+    "duration": 8,
+    "desc": "Viaduc construit 1969-1972, séparant le Mile End du Mile-Ex. Concours d'architecture annoncé en 2017 pour démolition et reconstruction (90-100 M$), démolition prévue d'ici 2030. Skatepark développé en 2019 par Rousseau Lefebvre et TOPO Architecture de paysage, premier skatepark de Montréal avec section bowl et snake run."
   },
   {
     "num": 7,
+    "name": "Entrepôt Van Horne",
+    "lat": 45.5224,
+    "lng": -73.5972,
+    "time": "11h59",
+    "duration": 6,
+    "desc": "1 et 55 avenue Van Horne. Construit en 1924 par l'entrepreneur Wilfrid Duquette à la suite d'un litige sur le viaduc Saint-Laurent (1911). Sept étages en béton armé revêtu de briques, surmonté d'une tour d'eau industrielle hors service depuis 1992. Projet Rester Management de transformation en complexe mixte, rapport OCPM publié en décembre 2025."
+  },
+  {
+    "num": 8,
+    "name": "Réseau Vert et Jardin du Crépuscule",
+    "lat": 45.5230,
+    "lng": -73.6000,
+    "time": "12h05",
+    "duration": 6,
+    "desc": "135 avenue Van Horne. Tronçon de 3 km sur les terrains du CP entre Fullum et Saint-Dominique, conçu par Jean Décarie dans les années 1980, inauguré en 1994. Jardin du Crépuscule : intervention guérilla de Glen LeMesurier (1999), environ 80 sculptures en pièces industrielles récupérées."
+  },
+  {
+    "num": 9,
+    "name": "Parc des Gorilles",
+    "lat": 45.5343,
+    "lng": -73.6135,
+    "time": "12h11",
+    "duration": 8,
+    "desc": "Quadrilatère Beaubien O × Saint-Urbain × Saint-Zotique O × Esplanade. Ancien terrain CP, mobilisation citoyenne en mai 2013 contre l'abattage illégal de 50 arbres par le Groupe Olymbec. Expropriation 2018, conception par civiliti, inauguré à l'automne 2024. Cogéré par Les AmiEs du Parc des Gorilles et la Ville."
+  },
+  {
+    "num": 10,
+    "name": "O Mile-Ex (ancien Main Knitting)",
+    "lat": 45.5320,
+    "lng": -73.6135,
+    "time": "12h19",
+    "duration": 6,
+    "desc": "6666 rue Saint-Urbain. Anciens bâtiments de Main Knitting (1966-2008), rénovés par Lemay 2014-2018 (370 000 pi²). Hôte de Mila depuis janvier 2019, Behaviour Interactive et autres entreprises de l'économie du savoir."
+  },
+  {
+    "num": 11,
+    "name": "Édifice Microsoft (6795 Marconi)",
+    "lat": 45.5325,
+    "lng": -73.6160,
+    "time": "12h25",
+    "duration": 5,
+    "desc": "6795 rue Marconi. Ancien bâtiment de Nostrano (1986-2018). Réaménagement majeur en 2020 : démolition partielle, ajout d'un étage en acier en surhauteur, nouvelle enveloppe en mur-rideau, 110 000 pi². Microsoft Research Montréal s'y installe entre 2018 et 2019."
+  },
+  {
+    "num": 12,
+    "name": "Bureaux Henri Cleinge architecte",
+    "lat": 45.5300,
+    "lng": -73.6150,
+    "time": "12h30",
+    "duration": 1,
+    "desc": "165 avenue Beaumont. Édifice contemporain en béton signé par l'architecte Henri Cleinge pour son propre usage : bureaux à droite, résidence à gauche. Cas-type du « quartier des architectes » du Mile-Ex."
+  },
+  {
+    "num": 13,
     "name": "Bureaux Saucier + Perrotte (7043 Waverly)",
     "lat": 45.5340,
     "lng": -73.6160,
-    "time": "11h27",
-    "duration": 7,
+    "time": "12h31",
+    "duration": 5,
     "type": "end",
-    "desc": "7043 rue Waverly (H2S 3J1). Ancien atelier de textile (1951-2000 : Ecclesia Knitting Mills, Hudson Ladies Coats, Allegro Garments), reconverti en 2007 par la firme Saucier + Perrotte en bureaux d'architecture et lofts résidentiels. Conclusion thématique sur la reconversion adaptative."
+    "desc": "7043 rue Waverly (H2S 3J1). Ancien atelier de textile (1951-2000 : Ecclesia Knitting Mills, Hudson Ladies Coats, Allegro Garments), reconverti en 2007 par Saucier + Perrotte. Trois étages en béton armé. Prix d'excellence OAQ 2009. Conclusion thématique."
   }
 ]
