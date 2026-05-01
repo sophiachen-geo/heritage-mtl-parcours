@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import ParcoursLayout from '../../layouts/ParcoursLayout.astro';
 import TourMap from '../../components/TourMap.astro';
 import StopsList from '../../components/StopsList.astro';
+import { colorForCircuit } from '../../lib/parcours.ts';
 
 export async function getStaticPaths() {
   const parcours = await getCollection('parcours', ({ data }) => !data.draft);
@@ -15,11 +16,40 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-// Charger le fichier stops.json adjacent à index.mdx via l'API d'import dynamique
-// Note : Astro résout les chemins de glob à la racine du projet
+// Charger TOUS les stops.json de tous les parcours non-brouillons, pour les agréger
+// sur la carte partagée. Astro résout les chemins de glob à la racine du projet.
 const stopsModules = import.meta.glob<{ default: any[] }>('../../content/parcours/**/stops.json', { eager: true });
-const stopsKey = Object.keys(stopsModules).find((k) => k.includes(entry.id.replace(/\/index$/, '')));
-const stops = stopsKey ? stopsModules[stopsKey].default : [];
+
+// Construire la liste des tracks pour la carte (un track par parcours), triés par date
+// croissante pour que la légende suive la chronologie.
+const allParcours = await getCollection('parcours', ({ data }) => !data.draft);
+const sortedParcours = allParcours.sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+
+const base = import.meta.env.BASE_URL;
+
+const tracks = sortedParcours
+  .map((p) => {
+    const slug = p.id.replace(/\/index$/, '');
+    const key = Object.keys(stopsModules).find((k) => k.includes(slug));
+    const stops = key ? stopsModules[key].default : [];
+    return {
+      slug,
+      circuit: p.data.circuit,
+      title: p.data.title,
+      dateLabel: p.data.date.toLocaleDateString('fr-CA', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }),
+      href: `${base}parcours/${slug}`,
+      color: colorForCircuit(p.data.circuit),
+      stops,
+    };
+  })
+  .filter((t) => t.stops.length > 0);
+
+// Stops du circuit courant (pour la barre latérale qui reste focalisée).
+const currentStops = tracks.find((t) => t.circuit === entry.data.circuit)?.stops ?? [];
 ---
 
 <ParcoursLayout
@@ -34,14 +64,19 @@ const stops = stopsKey ? stopsModules[stopsKey].default : [];
   organizer={entry.data.organizer}
   summary={entry.data.summary}
 >
-  {stops.length > 0 && (
+  {tracks.length > 0 && (
     <section class="map-section">
       <div class="map-grid">
         <div class="map-col">
-          <TourMap stops={stops} height="640px" id="parcours-map" />
+          <TourMap
+            tracks={tracks}
+            currentCircuit={entry.data.circuit}
+            height="640px"
+            id="parcours-map"
+          />
         </div>
         <div class="sidebar-col">
-          <StopsList stops={stops} mapId="parcours-map" />
+          <StopsList stops={currentStops} mapId="parcours-map" />
         </div>
       </div>
     </section>

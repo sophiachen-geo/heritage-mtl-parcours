@@ -63,6 +63,14 @@ Le serveur de développement recompile automatiquement à chaque modification de
 
 ## Ajouter un nouveau parcours
 
+Deux voies sont possibles : une importation automatique depuis Heptabase, ou la procédure manuelle décrite plus bas.
+
+### Voie automatique : importer depuis Heptabase
+
+Si les notes du parcours existent déjà dans Heptabase sous la forme d'une paire de cartes (`Carte du parcours : …` et `Notes de parcours : …`) respectant la convention décrite dans [`docs/heptabase-format.md`](docs/heptabase-format.md), la commande `/import-parcours` (définie dans `.claude/commands/import-parcours.md`) demande à Claude de récupérer les deux cartes, d'extraire coordonnées, métadonnées et corps de texte, et de générer directement `stops.json` et `index.mdx` dans `src/content/parcours/AAAA-circuit-N/`. Les photos restent à téléverser manuellement après l'import.
+
+### Voie manuelle
+
 L'ajout d'une nouvelle visite suit toujours la même séquence en quatre étapes.
 
 **Étape 1. Créer le dossier du parcours.** La convention de nommage est `ANNÉE-série-circuit`, ce qui donne un classement chronologique naturel et lisible. Par exemple :
