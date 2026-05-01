@@ -22,3 +22,6 @@ pnpm-debug.log*
 .vscode/
 .idea/
 *.swp
+
+# pipeline previews (Phase 4 drafts before Heptabase save)
+.tmp/
