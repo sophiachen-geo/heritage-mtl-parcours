@@ -1,0 +1,112 @@
+[
+  {
+    "num": 1,
+    "name": "Place des Montréalaises",
+    "lat": 45.5098,
+    "lng": -73.5561,
+    "time": "17h30",
+    "duration": 8,
+    "type": "start",
+    "desc": "Point de départ. Place inaugurée le 16 mai 2025 ; concours lancé en 2017, lauréat dévoilé en 2018 (Lemay, Angela Silver, AtkinsRéalis). 21 figures féminines commémorées."
+  },
+  {
+    "num": 2,
+    "name": "Champ-de-Mars",
+    "lat": 45.5087,
+    "lng": -73.5553,
+    "time": "17h38",
+    "duration": 5,
+    "desc": "Vestiges des fortifications de Chaussegros de Léry (1717-1744). Démolition de 1804 à 1817. Près de deux fois plus d'habitants dans les faubourgs en 1805."
+  },
+  {
+    "num": 3,
+    "name": "Rue Saint-Louis (faubourg)",
+    "lat": 45.5115,
+    "lng": -73.5531,
+    "time": "17h43",
+    "duration": 5,
+    "desc": "Tracé étroit du faubourg Saint-Louis, développé à partir des années 1740. Permissivité urbanistique et prédominance de la construction en bois."
+  },
+  {
+    "num": 4,
+    "name": "Maison Brossard-Gauvin",
+    "lat": 45.5113,
+    "lng": -73.5536,
+    "time": "17h48",
+    "duration": 8,
+    "desc": "Partie est érigée entre 1743 et 1758. Classée le 7 juillet 1983. Restauration majeure 1985-1986 avec restitution de la tôle pincée à la canadienne."
+  },
+  {
+    "num": 5,
+    "name": "Deuxième maison de faubourg",
+    "lat": 45.5114,
+    "lng": -73.5534,
+    "time": "17h56",
+    "duration": 5,
+    "desc": "Couverture en tôle pincée à la canadienne. Témoin de la fragilité du patrimoine bâti des faubourgs."
+  },
+  {
+    "num": 6,
+    "name": "Gare Berri",
+    "lat": 45.5125,
+    "lng": -73.5528,
+    "time": "18h01",
+    "duration": 8,
+    "desc": "Construite par le Canadien Pacifique entre 1910 et 1911, achevée en 1912 (Walter S. Painter). Annexe de la gare-hôtel Viger. Cesse ses activités en 1951."
+  },
+  {
+    "num": 7,
+    "name": "Topographie ferroviaire",
+    "lat": 45.5128,
+    "lng": -73.5524,
+    "time": "18h09",
+    "duration": 5,
+    "desc": "Dénivelé résiduel entre Saint-Antoine et Viger, vestige de l'escarpement vers la rivière Saint-Martin. Le complexe ferroviaire CP (1883-1911) a redessiné le parcellaire."
+  },
+  {
+    "num": 8,
+    "name": "Gare-hôtel Viger",
+    "lat": 45.5122,
+    "lng": -73.5525,
+    "time": "18h14",
+    "duration": 12,
+    "desc": "Construite 1896-1898 par Bruce Price. Seule gare-hôtel jamais construite au Canada. Hôtel ferme en 1935. Vente à la Ville le 17 octobre 1950. Acquisition Jesta en 2012."
+  },
+  {
+    "num": 9,
+    "name": "810 Saint-Antoine Est",
+    "lat": 45.5130,
+    "lng": -73.5525,
+    "time": "18h26",
+    "duration": 8,
+    "desc": "Bâtiment brutaliste de 1973. Projet Broccolini-PUR Immobilia de 653 logements en tour de 18 étages bloqué au printemps 2026 par référendum citoyen."
+  },
+  {
+    "num": 10,
+    "name": "Édifice Gilles-Hocquart (BAnQ Vieux-Montréal)",
+    "lat": 45.5136,
+    "lng": -73.5551,
+    "time": "18h34",
+    "duration": 10,
+    "desc": "Beaux-Arts, 1908-1911 (Gauthier et Daoust) pour les HEC. Sculptures de Cérès et Hermès. Conversion 1997-1999 (Hanganu et Provencher_Roy). Atrium des Géantes."
+  },
+  {
+    "num": 11,
+    "name": "Hôpital de la Miséricorde",
+    "lat": 45.5151,
+    "lng": -73.5557,
+    "time": "18h44",
+    "duration": 8,
+    "desc": "Communauté fondée en 1848. Institut érigé en 1853 (Victor Bourgeau). Achat Hydro-Québec le 2 septembre 2025 (15 M$). Mégaposte Miséricorde, chantier 2030-2034."
+  },
+  {
+    "num": 12,
+    "name": "Square Viger",
+    "lat": 45.5118,
+    "lng": -73.5548,
+    "time": "18h52",
+    "duration": 8,
+    "type": "end",
+    "desc": "Conclusion. Créé à partir de 1818. Reconstruction 1976 par Daudelin, Théberge, Gnass. Tunnel Viger inauguré en 1986. Réaménagement par NIPPAYSAGE 2017-2020 (18 pergolas conservées sur 22)."
+  }
+]
